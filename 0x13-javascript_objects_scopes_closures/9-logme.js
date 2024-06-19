@@ -1,7 +1,7 @@
 #!/usr/bin/node
-let args_num = 0;
+let argsNum = 0;
 
 exports.logMe = function (item) {
-  console.log(args_num + ': ' + item);
-  args_num++;
+  console.log(argsNum + ': ' + item);
+  argsNum++;
 };
