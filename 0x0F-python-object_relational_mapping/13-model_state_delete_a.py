@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-""" Changes the name of a 'State' object"""
+""" Deletes all 'State' objects with a name
+containing the leter 'a' from the database"""
 import sys
 from model_state import Base, State
-from sqlalchemy import create_engine
+from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker
 
 
@@ -12,6 +13,6 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    new_obj = session.query(State).filter_by(id=2).first()
-    new_obj.name = 'New Mexico'
+    for obj in session.query(State).filter(State.name.like('%a%')):
+        session.delete(obj)
     session.commit()
